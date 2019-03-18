@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Yandex.Music.Api;
 using Yandex.Music.Api.Models;
@@ -10,6 +11,11 @@ namespace TermStyle
     {
         static void Main(string[] args)
         {
+            var musicDir = "music";
+            
+            if (!Directory.Exists(musicDir))
+                Directory.CreateDirectory(musicDir);
+            
             var api = new YandexMusicApi();
 
             var login = new LoginPanel(api);
@@ -50,14 +56,10 @@ namespace TermStyle
             table.SetData(tableData);
             table.Show();
 
-            var audio = new AudioPlayer();
-            audio.SetTrack("Can not sleep", new TimeSpan(0, 0, 2, 34));
-            audio.SetCurrentPosition(new TimeSpan(0, 0, 0, 34));
-            audio.Show();
-            Console.WriteLine();
-            
-            Console.Write(":: Send command: ");
-            Console.ReadLine();
+            var audio = new AudioPlayer(api, tracks);
+            audio.Play();
+
+            Console.ReadKey();
         }
     }
 }

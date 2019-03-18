@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NAudio" Version="1.9.0-preview2" />
     <PackageReference Include="Yandex.Music.Api" Version="1.0.0" />
   </ItemGroup>
 </Project>
